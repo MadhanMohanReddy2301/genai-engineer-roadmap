@@ -280,14 +280,126 @@
       font-size: 1rem;
     }
 
-    @media (max-width: 760px) {
-      .qa-table th:nth-child(3),
-      .qa-table td:nth-child(3) {
-        min-width: 230px;
+    /* ================= RESPONSIVE / MOBILE ================= */
+
+    /* Tablet and smaller */
+    @media (max-width: 900px) {
+      .container {
+        padding: 0.8rem;
       }
 
       .hero {
-        padding-top: 1.8rem;
+        padding: 1.8rem 1rem 1.2rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      h2 {
+        font-size: 1.1rem;
+      }
+
+      .phase-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      .phase-tag {
+        white-space: normal;
+      }
+    }
+
+    /* Mobile: convert table rows into stacked cards */
+    @media (max-width: 760px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 0.85rem;
+      }
+
+      .qa-table thead {
+        display: none;
+      }
+
+      .qa-table,
+      .qa-table tbody,
+      .qa-table tr,
+      .qa-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .qa-table tr {
+        border-bottom: 1px solid #ebe3d8;
+        padding: 0.75rem 0.25rem;
+      }
+
+      .qa-table tr:last-child {
+        border-bottom: none;
+      }
+
+      .qa-table td {
+        border: none;
+        padding: 0.35rem 0;
+        font-size: 0.95rem;
+      }
+
+      .qa-table td:first-child {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .qa-table td:nth-child(2) {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .qa-table td:nth-child(3) {
+        background: #faf7f1;
+        border-radius: 8px;
+        padding: 0.55rem 0.65rem;
+        margin-top: 0.35rem;
+      }
+
+      .qa-table td:last-child {
+        margin-top: 0.35rem;
+      }
+
+      .resource a {
+        word-break: break-word;
+      }
+
+      footer {
+        padding: 1.2rem 0.8rem;
+      }
+
+      .footer-links {
+        gap: 0.6rem;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 1.35rem;
+      }
+
+      .subtitle {
+        font-size: 0.92rem;
+      }
+
+      .pill {
+        font-size: 0.9rem;
+      }
+
+      .phase-head {
+        padding: 0.75rem 0.8rem;
       }
     }
   </style>
