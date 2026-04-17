@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GenAI Engineer Roadmap</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --card: #fffdf9;
+      --ink: #1b2a31;
+      --muted: #546a73;
+      --accent: #0f766e;
+      --accent-2: #d97706;
+      --line: #d9d1c5;
+      --good: #166534;
+      --warn: #92400e;
+      --bad: #991b1b;
+      --shadow: 0 10px 30px rgba(20, 35, 40, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Trebuchet MS", "Gill Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, #f0ebe2 0, transparent 30%),
+        radial-gradient(circle at 90% 25%, #e7f0ed 0, transparent 35%),
+        var(--bg);
+      line-height: 1.5;
+    }
+
+    .hero {
+      padding: 2.5rem 1rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(120deg, #f9f5ec 0%, #f0f7f4 60%, #eef7fb 100%);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      letter-spacing: 0.3px;
+    }
+
+    .subtitle {
+      margin-top: 0.6rem;
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .pill {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+    }
+
+    .guideline {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+
+    .guideline i {
+      color: var(--accent);
+      margin-top: 0.1rem;
+      font-size: 1rem;
+    }
+
+    .guideline strong {
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin: 0 0 0.7rem;
+      font-size: 1.25rem;
+      border-left: 5px solid var(--accent);
+      padding-left: 0.6rem;
+    }
+
+    .title-icon {
+      color: #0e6e68;
+      margin-right: 0.45rem;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .note {
+      background: #f3f7f5;
+      border: 1px solid #c8ddd6;
+      border-left: 5px solid var(--accent);
+      border-radius: 10px;
+      padding: 0.8rem;
+      margin-top: 0.8rem;
+      color: #274148;
+    }
+
+    .bad-note {
+      background: #fff6f6;
+      border: 1px solid #f2cccc;
+      border-left: 5px solid var(--bad);
+      color: #5a2323;
+    }
+
+    .good-note {
+      background: #f5fbf2;
+      border: 1px solid #cfe8c1;
+      border-left: 5px solid var(--good);
+      color: #284226;
+    }
+
+    .phase {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .phase-head {
+      padding: 0.9rem 1rem;
+      background: linear-gradient(90deg, #f4eee3, #eef6f2);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .phase-tag {
+      font-size: 0.83rem;
+      color: #185e58;
+      background: #dff1ed;
+      border: 1px solid #bdded8;
+      border-radius: 999px;
+      padding: 0.18rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    .phase-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .phase-title i {
+      color: #0f766e;
+      font-size: 0.95rem;
+    }
+
+    .qa-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .qa-table th,
+    .qa-table td {
+      border-bottom: 1px solid #ebe3d8;
+      vertical-align: top;
+      padding: 0.7rem;
+      text-align: left;
+    }
+
+    .qa-table th {
+      background: #faf7f1;
+      font-size: 0.9rem;
+      color: #42545b;
+    }
+
+    .qa-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .resource a {
+      color: #0e5fa6;
+      text-decoration: none;
+    }
+
+    .resource a:hover {
+      text-decoration: underline;
+    }
+
+    .level {
+      font-size: 0.8rem;
+      color: #7a5f1f;
+      background: #fff4d8;
+      border: 1px solid #e6d39b;
+      border-radius: 999px;
+      padding: 0.1rem 0.5rem;
+      white-space: nowrap;
+    }
+
+    .checklist {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    footer {
+      margin: 1.5rem 0 0;
+      padding: 1.5rem 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+      background: linear-gradient(120deg, #f9f5ec 0%, #f0f7f4 100%);
+    }
+
+    .footer-author {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #0e5fa6;
+      text-decoration: none;
+      font-size: 0.93rem;
+      border: 1px solid #c8dce8;
+      border-radius: 999px;
+      padding: 0.3rem 0.85rem;
+      background: #f4f9ff;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .footer-links a:hover {
+      background: #e0effd;
+      border-color: #90bfe8;
+    }
+
+    .footer-links a i {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 760px) {
+      .qa-table th:nth-child(3),
+      .qa-table td:nth-child(3) {
+        min-width: 230px;
+      }
+
+      .hero {
+        padding-top: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>GenAI Engineer Roadmap</h1>
+      <p class="subtitle">
+        A practical and share-friendly roadmap for anyone who wants to become a strong GenAI engineer.
+        It covers fundamentals, LLM core knowledge, RAG, agents, MCP, evaluation, security, and production thinking.
+      </p>
+      <div class="summary-grid">
+        <div class="pill guideline">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+          <div><strong>Use phase gates</strong> Do not move ahead until you can answer each phase in your own words.</div>
+        </div>
+        <div class="pill guideline">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>
+          <div><strong>Build while learning</strong> After every two phases, ship a small project to lock concepts in practice.</div>
+        </div>
+        <div class="pill guideline">
+          <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+          <div><strong>Track measurable progress</strong> Keep a scorecard: quality, latency, cost, and failure rate per project.</div>
+        </div>
+        <div class="pill guideline">
+          <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+          <div><strong>Iterate monthly</strong> Revisit old projects with better evals, better prompts, and better retrieval.</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2><i class="fa-solid fa-compass title-icon" aria-hidden="true"></i>How to Use This Roadmap</h2>
+      <div class="note good-note">
+        <strong>Learn in sequence:</strong> complete each phase gate before jumping ahead to avoid weak foundations.
+      </div>
+      <div class="note">
+        <strong>Build continuously:</strong> after each phase, create one mini-project and keep notes on what failed and how you fixed it.
+      </div>
+      <div class="note bad-note">
+        <strong>Think like an engineer:</strong> always measure quality, latency, and cost instead of relying on "it feels good" results.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><i class="fa-solid fa-road title-icon" aria-hidden="true"></i>Roadmap With Questions and Resources</h2>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-cubes" aria-hidden="true"></i>Phase 1 - Foundations and Mental Models</h3>
+          <span class="phase-tag">Gate: explain in plain English without jargon</span>
+        </div>
+        <table class="qa-table">
+          <thead>
+            <tr>
+              <th>Question / Concept</th>
+              <th>Why It Matters</th>
+              <th>Beginner Resource (Article + Video)</th>
+              <th>Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI vs ML vs Deep Learning vs Generative AI</td>
+              <td>Builds conceptual clarity and avoids random tool usage.</td>
+              <td class="resource">
+                Article: <a href="https://www.ibm.com/think/topics/ai-vs-machine-learning-vs-deep-learning-vs-neural-networks" target="_blank" rel="noopener">IBM overview</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=2ePf9rue1Ao" target="_blank" rel="noopener">AI vs ML vs DL explained</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Why GenAI is different from traditional ML</td>
+              <td>Changes how systems are designed: probabilistic outputs, prompt layer, context management.</td>
+              <td class="resource">
+                Article: <a href="https://www.deeplearning.ai/the-batch/how-generative-ai-differs-from-traditional-ai/" target="_blank" rel="noopener">DeepLearning.AI article</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=5sLYAQS9sWQ" target="_blank" rel="noopener">Generative AI in simple terms</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Which problems are not suitable for GenAI</td>
+              <td>Prevents expensive and risky misuse in production.</td>
+              <td class="resource">
+                Article: <a href="https://www.anthropic.com/research" target="_blank" rel="noopener">Anthropic research index (limitations & safety)</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=JTxsNm9IdYU" target="_blank" rel="noopener">LLM limitations and failure modes</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Why Python dominates in AI</td>
+              <td>Helps choose the right stack early for ecosystem speed.</td>
+              <td class="resource">
+                Article: <a href="https://www.geeksforgeeks.org/why-python-is-used-for-ai/" target="_blank" rel="noopener">Why Python for AI</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank" rel="noopener">Python crash course</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Tokens, embeddings, vectors (intuition)</td>
+              <td>Core language for model APIs and retrieval systems.</td>
+              <td class="resource">
+                Article: <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">Tokenizer playground</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener">Embeddings explained simply</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>How text becomes numbers</td>
+              <td>Connects NLP preprocessing to model behavior.</td>
+              <td class="resource">
+                Article: <a href="https://jalammar.github.io/illustrated-word2vec/" target="_blank" rel="noopener">Illustrated Word2Vec</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=aircAruvnKk" target="_blank" rel="noopener">Neural nets intuition</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-brain" aria-hidden="true"></i>Phase 2 - LLM Core Concepts</h3>
+          <span class="phase-tag">Gate: can explain next-token prediction + hallucination causes</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>What is an LLM?</td>
+              <td>Sets shared vocabulary for architecture and model selection.</td>
+              <td class="resource">
+                Article: <a href="https://aws.amazon.com/what-is/large-language-model/" target="_blank" rel="noopener">What is an LLM</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Andrej Karpathy LLM intro</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>How LLM generates text step-by-step</td>
+              <td>Essential for prompt design, decoding settings, and reliability.</td>
+              <td class="resource">
+                Article: <a href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener">Hugging Face LLM course</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener">How language models predict text</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Why hallucinations happen</td>
+              <td>Prevents unsafe product assumptions.</td>
+              <td class="resource">
+                Article: <a href="https://www.microsoft.com/en-us/research/blog/why-language-models-hallucinate/" target="_blank" rel="noopener">Why models hallucinate</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=5f3vV0mE2fM" target="_blank" rel="noopener">Hallucinations explained</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Why transformers replaced RNNs</td>
+              <td>Explains scale, parallelization, and context handling advantages.</td>
+              <td class="resource">
+                Article: <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">Illustrated Transformer</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=4Bdc55j80l8" target="_blank" rel="noopener">Transformers visual intro</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Attention intuition + context window meaning</td>
+              <td>Required for chunking, prompt limits, and memory strategy.</td>
+              <td class="resource">
+                Article: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention is All You Need</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=iDulhoQ2pro" target="_blank" rel="noopener">Attention mechanism explained</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Token economics: cost, latency, and optimization</td>
+              <td>Separates engineering decisions from demo-only prototypes.</td>
+              <td class="resource">
+                Article: <a href="https://platform.openai.com/docs/guides/latency-optimization" target="_blank" rel="noopener">Latency and efficiency guide</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=dA1CHGACXCo" target="_blank" rel="noopener">Prompt/token optimization strategies</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-sliders" aria-hidden="true"></i>Phase 3 - Prompting, Output Control, and APIs</h3>
+          <span class="phase-tag">Gate: can build a small reliable prompt-to-JSON service</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>What makes a good prompt?</td>
+              <td>Improves response quality without changing model.</td>
+              <td class="resource">
+                Article: <a href="https://developers.openai.com/api/docs/guides/prompt-engineering" target="_blank" rel="noopener">Prompt engineering guide</a><br />
+                Video: <a href="https://youtu.be/n0VpK1RfYGA?si=8Kq6qw99fV7hrrIb" target="_blank" rel="noopener">Prompting best practices</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>System vs user prompt vs developer instruction</td>
+              <td>Defines behavioral contract and safety boundaries.</td>
+              <td class="resource">
+                Article: <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts" target="_blank" rel="noopener">System prompts in practice</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=0pM0wY2mA40" target="_blank" rel="noopener">Prompt role hierarchy</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Few-shot prompting and when to use it</td>
+              <td>Improves consistency on structured tasks.</td>
+              <td class="resource">
+                Article: <a href="https://www.promptingguide.ai/techniques/fewshot" target="_blank" rel="noopener">Few-shot guide</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=_ZvnD73m40o" target="_blank" rel="noopener">Few-shot examples</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>How to force JSON output and validate schema</td>
+              <td>Critical for workflows, automation, and downstream APIs.</td>
+              <td class="resource">
+                Article: <a href="https://platform.openai.com/docs/guides/structured-outputs" target="_blank" rel="noopener">Structured outputs</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=vf2fG3Q4Q3k" target="_blank" rel="noopener">Structured extraction tutorial</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>How to call an LLM via API (timeouts, retries, rate limits)</td>
+              <td>Moves from notebooks to production-ready services.</td>
+              <td class="resource">
+                Article: <a href="https://developers.openai.com/resources/" target="_blank" rel="noopener">API resources and guides</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener">Build your first LLM API app</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-database" aria-hidden="true"></i>Phase 4 - RAG and Retrieval Engineering</h3>
+          <span class="phase-tag">Gate: deploy RAG that beats baseline chat on factual QA</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>What is RAG and why it is needed</td>
+              <td>Addresses freshness and grounding limits of base LLMs.</td>
+              <td class="resource">
+                Article: <a href="https://huggingface.co/docs/transformers/en/tasks/rag" target="_blank" rel="noopener">RAG overview</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=T-D1OfcDW1M" target="_blank" rel="noopener">RAG explained simply</a>
+              </td>
+              <td><span class="level">Beginner</span></td>
+            </tr>
+            <tr>
+              <td>Embeddings and vector databases</td>
+              <td>Core for semantic retrieval quality.</td>
+              <td class="resource">
+                Article: <a href="https://www.pinecone.io/learn/vector-embeddings/" target="_blank" rel="noopener">Vector embeddings intro</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=sNa_uiqSlJo" target="_blank" rel="noopener">Vector databases explained</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Semantic search, chunking strategies, reranking</td>
+              <td>Most common source of RAG success or failure.</td>
+              <td class="resource">
+                Article: <a href="https://www.pinecone.io/learn/chunking-strategies/" target="_blank" rel="noopener">Chunking strategies</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=O6j9n6xQJ2w" target="_blank" rel="noopener">How retrieval works in RAG</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>End-to-end RAG pipeline and failure points</td>
+              <td>Enables debugging by stage instead of guessing.</td>
+              <td class="resource">
+                Article: <a href="https://docs.llamaindex.ai/en/stable/optimizing/production_rag/" target="_blank" rel="noopener">Production RAG guide</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=qN_2fnOPY-M" target="_blank" rel="noopener">Build RAG end-to-end</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Fine-tuning vs RAG decision framework</td>
+              <td>Prevents expensive wrong architecture choices.</td>
+              <td class="resource">
+                Article: <a href="https://www.pinecone.io/learn/fine-tune-gpt-3.5/" target="_blank" rel="noopener">Fine-tuning primer</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=hnV6Q5M9oXg" target="_blank" rel="noopener">RAG vs fine-tuning</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>Why cosine similarity is common in embeddings</td>
+              <td>Needed to reason about retrieval metrics.</td>
+              <td class="resource">
+                Article: <a href="https://www.pinecone.io/learn/series/vector-databases-in-production-for-busy-engineers/vector-similarity/" target="_blank" rel="noopener">Vector similarity basics</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=e9U0QAFbfLI" target="_blank" rel="noopener">Cosine similarity visual intuition</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>Phase 5 - Tools, Agents, and MCP</h3>
+          <span class="phase-tag">Gate: can design one tool-using assistant with safe boundaries</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>LLM vs Tool vs Agent (clear distinction)</td>
+              <td>Avoids architecture confusion and overengineering.</td>
+              <td class="resource">
+                Article: <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Building effective agents</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=F8NKVhkZZWI" target="_blank" rel="noopener">Agents vs workflows</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Planning vs execution loops in agents</td>
+              <td>Required for reliability and controllable behavior.</td>
+              <td class="resource">
+                Article: <a href="https://langchain-ai.github.io/langgraph/" target="_blank" rel="noopener">Stateful agent graphs</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=0JfN8P6N8M0" target="_blank" rel="noopener">Agent planning loops</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>Agent memory: short-term, long-term, episodic</td>
+              <td>Improves personalization and continuity.</td>
+              <td class="resource">
+                Article: <a href="https://python.langchain.com/docs/how_to/chatbots_memory/" target="_blank" rel="noopener">Memory patterns</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=cdiD-9MMpb0" target="_blank" rel="noopener">Agent memory design</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>What is MCP and why it exists</td>
+              <td>Standardizes context/tool integration across systems.</td>
+              <td class="resource">
+                Article: <a href="https://modelcontextprotocol.io/introduction" target="_blank" rel="noopener">MCP introduction</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=kQmXtrmQ5Zg" target="_blank" rel="noopener">MCP explained</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>MCP vs direct tool-calling APIs</td>
+              <td>Critical for scalable multi-tool infrastructure choices.</td>
+              <td class="resource">
+                Article: <a href="https://modelcontextprotocol.io/docs/concepts/architecture" target="_blank" rel="noopener">MCP architecture concepts</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=8mNoHjVz7Nw" target="_blank" rel="noopener">How MCP differs from function calling</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i>Phase 6 - Evaluation, Observability, and Reliability</h3>
+          <span class="phase-tag">Gate: can measure quality with repeatable metrics</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>What to do when output is wrong</td>
+              <td>Forces systematic fallback design.</td>
+              <td class="resource">
+                Article: <a href="https://martinfowler.com/articles/2023-chatgpt-xu-hao.html" target="_blank" rel="noopener">Patterns for AI app reliability</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=R4xQvLxg9xA" target="_blank" rel="noopener">Guardrails and fallback techniques</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>How to evaluate LLM responses</td>
+              <td>Without evaluation, improvements are guesswork.</td>
+              <td class="resource">
+                Article: <a href="https://www.promptfoo.dev/docs/" target="_blank" rel="noopener">Promptfoo eval docs</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=2d7w4XQw3vQ" target="_blank" rel="noopener">LLM evaluation in practice</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Correctness metrics: groundedness, relevance, faithfulness</td>
+              <td>Transforms quality from opinion to measurable targets.</td>
+              <td class="resource">
+                Article: <a href="https://arize.com/blog-course/evaluation-of-llms-and-rag-a-practical-guide/" target="_blank" rel="noopener">Practical eval guide</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=4qzA8e0pWwc" target="_blank" rel="noopener">RAG evaluation walkthrough</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>Tracing and debugging multi-step AI systems</td>
+              <td>Shortens time-to-fix in production incidents.</td>
+              <td class="resource">
+                Article: <a href="https://docs.langchain.com/langsmith/observability-quickstart" target="_blank" rel="noopener">Tracing quickstart</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=6nW8uB2u8E8" target="_blank" rel="noopener">Observe and debug LLM apps</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Phase 7 - Production, Security, and LLMOps</h3>
+          <span class="phase-tag">Gate: can run safely under cost, latency, and abuse constraints</span>
+        </div>
+        <table class="qa-table">
+          <tbody>
+            <tr>
+              <td>Latency vs cost trade-offs in LLM apps</td>
+              <td>Most real-world decisions are optimization trade-offs.</td>
+              <td class="resource">
+                Article: <a href="https://platform.openai.com/docs/guides/latency-optimization" target="_blank" rel="noopener">Latency optimization</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=2Vv-BfVoq4g" target="_blank" rel="noopener">Engineering for performance trade-offs</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>How to reduce API cost significantly</td>
+              <td>Critical for sustainable product economics.</td>
+              <td class="resource">
+                Article: <a href="https://www.anyscale.com/blog/llm-cost-optimization-strategies" target="_blank" rel="noopener">Cost optimization patterns</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=Q8rI9g0f2pI" target="_blank" rel="noopener">Cut LLM costs in production</a>
+              </td>
+              <td><span class="level">Intermediate</span></td>
+            </tr>
+            <tr>
+              <td>Prompt injection and defensive design</td>
+              <td>Top security risk in tool-connected AI systems.</td>
+              <td class="resource">
+                Article: <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM apps</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=9A5f2aG3A3M" target="_blank" rel="noopener">Prompt injection explained</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>What is LLMOps and how it differs from MLOps</td>
+              <td>Defines lifecycle: prompt/version/eval/telemetry rollouts.</td>
+              <td class="resource">
+                Article: <a href="https://www.databricks.com/glossary/llmops" target="_blank" rel="noopener">LLMOps overview</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=MJ9C6QnAN6Y" target="_blank" rel="noopener">From MLOps to LLMOps</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+            <tr>
+              <td>Deployment patterns: API service, queue worker, streaming UX</td>
+              <td>Turns prototypes into usable products.</td>
+              <td class="resource">
+                Article: <a href="https://12factor.net/" target="_blank" rel="noopener">12-factor app principles</a><br />
+                Video: <a href="https://www.youtube.com/watch?v=8hly31xKli0" target="_blank" rel="noopener">Deploying Python AI services</a>
+              </td>
+              <td><span class="level">Advanced</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="phase">
+        <div class="phase-head">
+          <h3 class="phase-title"><i class="fa-solid fa-flag-checkered" aria-hidden="true"></i>Phase 8 - Final Engineer Test (Capstone)</h3>
+          <span class="phase-tag">Gate: build, evaluate, deploy, and defend design choices</span>
+        </div>
+        <div class="card" style="margin: 0; border: none; box-shadow: none;">
+          <p><strong>Build this end-to-end project:</strong> Document Q and A assistant with RAG, memory, tools, evaluation, and secure deployment.</p>
+          <ul class="checklist">
+            <li>Ingestion: parse docs, clean text, chunk, embed, index.</li>
+            <li>Query path: retrieve, rerank, answer with citations.</li>
+            <li>Tooling: add one calculator/date/API tool with constraints.</li>
+            <li>Memory: preserve useful context, expire sensitive context.</li>
+            <li>Safety: prompt injection filters + allowlist tool access.</li>
+            <li>Evaluation: golden test set + automatic scoring + manual review.</li>
+            <li>Operations: traces, latency dashboard, cost dashboard, alerting.</li>
+            <li>Deployment: containerized service with CI checks.</li>
+          </ul>
+          <div class="note">
+            <strong>Passing criteria:</strong> reproducible quality metrics, lower hallucination rate than baseline chat, and stable cost per request.
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2><i class="fa-solid fa-circle-plus title-icon" aria-hidden="true"></i>Additional Topics You Should Keep (High Value)</h2>
+      <ul class="checklist">
+        <li>Multimodal basics (text + image + audio use cases).</li>
+        <li>Data governance and privacy (PII redaction, retention policy).</li>
+        <li>Caching strategies (semantic cache, response cache, retrieval cache).</li>
+        <li>Human-in-the-loop workflows for high-risk tasks.</li>
+        <li>Model routing and fallback (small model first, large model on failure).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2><i class="fa-solid fa-filter-circle-xmark title-icon" aria-hidden="true"></i>What to Remove or De-prioritize</h2>
+      <ul class="checklist">
+        <li>Do not over-focus on prompt tricks before retrieval and evaluation.</li>
+        <li>Do not start with multi-agent systems before single-agent reliability.</li>
+        <li>Avoid adding every framework early; master one stack first.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-author">
+      <i class="fa-solid fa-user-tie" style="color:#0f766e;margin-right:0.4rem;"></i>
+      Madhan Mohan Reddy
+    </div>
+    <div style="margin-bottom:0.6rem;color:var(--muted);font-size:0.9rem;">
+      GenAI Engineer Roadmap &mdash; A living checklist for learners and builders. Update links quarterly.
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/madhanmmr" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/MadhanMohanReddy2301" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
